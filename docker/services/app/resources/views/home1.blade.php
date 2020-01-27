@@ -7,19 +7,6 @@
 		
 		<title>Movie Review</title>
 
-		<!-- Loading third party fonts -->
-		<link href="http://fonts.googleapis.com/css?family=Roboto:300,400,700|" rel="stylesheet" type="text/css">
-		<link href="fonts/font-awesome.min.css" rel="stylesheet" type="text/css">
-		<link href="{{ asset('app/fonts/font-awesome.min.css') }}" rel="stylesheet">
-
-		<!-- Loading main css file -->
-		<link href="{{ asset('app/css/style_extern.css') }}" rel="stylesheet">
-		
-		<!--[if lt IE 9]>
-		<script src="js/ie-support/html5.js"></script>
-		<script src="js/ie-support/respond.js"></script>
-		<![endif]-->
-
 	</head>
 
 
@@ -254,14 +241,9 @@
 				</div> <!-- .container -->
 
 			</footer> -->
-		</div>
+		</div> 
 		<!-- Default snippet for navigation -->
 		
 
-		<script src="{{ asset('app/js/jquery-1.11.1.min.js') }}" defer></script>
-		<script src="{{ asset('app/js/plugins_extern.js') }}" defer></script>
-		<script src="{{ asset('app/js/app_extern.js') }}" defer></script>
-		
-		
 	</body>
 @endsection
