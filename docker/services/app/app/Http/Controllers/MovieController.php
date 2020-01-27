@@ -19,10 +19,16 @@ class MovieController extends Controller
     //     return Movies::find($id);
     // }
 
-    public function show(Movies $Movies)
+    public function show(Movies $movie)
     {
-        return $Movies;
+        return $movie;
     }
+
+    public function searchByName(Request $request)
+    {
+        return Movie::whereLike('original_title', $request->param)->get();
+    }
+
 
     public function store(Request $request)
     {
@@ -31,12 +37,7 @@ class MovieController extends Controller
         return response()->json($Movies, 201);
     }
 
-    public function update(Request $request, Movies $Movies)
-    {
-        $Movies->update($request->all());
-
-        return response()->json($Movies, 200);
-    }
+    
 
     public function delete(Movies $Movies)
     {

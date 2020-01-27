@@ -32,10 +32,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::get('movies', 'MovieController@index');
-Route::get('test',function(){
-    return ['status' => true];
-});
-Route::get('movies/{id}', 'MovieController@show');
+Route::get('movies/{movie}', 'MovieController@show');
+Route::get('search/{original_title}','MovieController@searchByName');
 Route::post('movies', 'MovieController@store');
 Route::put('movies/{id}', 'MovieController@update');
 Route::delete('movies/{id}', 'MovieController@delete');

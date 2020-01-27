@@ -14,4 +14,9 @@ class Movies extends Model
         'production_companies','production_countries','release_date','revenue','runtime',
         'spoken_languages','status','tagline','title','video','vote_average','vote_count'
     ];
+
+    public function scopeWhereLike($query, $column, $value)
+    {
+        return $query->where($column, 'like', '%'.$value.'%');
+    }
 }
