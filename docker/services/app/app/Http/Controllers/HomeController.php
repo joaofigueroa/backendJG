@@ -35,7 +35,7 @@ class HomeController extends Controller
     {
         return view('list');
     }
-
+    
     public function profile()
     {
         return view('profile');

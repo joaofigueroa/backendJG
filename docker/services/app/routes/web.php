@@ -26,6 +26,8 @@ Route::group(['prefix' => 'app'], function () {
 
 });
 
+
+
 Route::get('home', 'HomeController@index')->name('home');
 Route::get('home1', 'HomeController@index1')->name('home1');
 Route::get('list', 'HomeController@list')->name('list');
