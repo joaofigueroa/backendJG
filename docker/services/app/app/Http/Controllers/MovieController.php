@@ -26,7 +26,8 @@ class MovieController extends Controller
 
     public function searchByName(Request $request)
     {
-        return Movie::whereLike('original_title', $request->param)->get();
+        return Movies::whereLike('title', $request->param)->get();
+        //return Movies::all();
     }
 
 

@@ -4,6 +4,7 @@
 		<meta charset="UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1">
+		<link href="{{ asset('app/css/style_extern.css') }}" rel="stylesheet">
 		
 		<title>Movie Review</title>
 
@@ -90,16 +91,7 @@
 							<div class="col-sm-6 col-md-3">
 								<div class="latest-movie">
 									<a href="#"><img src="dummy/thumb-6.jpg" alt="Movie 6"></a>								
-								</div>
-								@if (Auth::check())
-									<div class="col-sm-6">
-										<button type="button" class="btn btn-info">Informações</button>
-									</div>	
-									<div class="col-sm-6">								
-										<button type="button" class="btn btn-light"> Add Lista</button>
-									</div>
-								@endif
-								
+								</div>																
 							</div>
 						</div> <!-- .row -->
 						
@@ -235,15 +227,17 @@
 								</form>
 							</div>
 						</div>
-					</div> <!-- .row -->
+					</div>  .row -->
 
-					<div class="colophon">Copyright 2014 Company name, Designed by Themezy. All rights reserved</div>
+					
 				</div> <!-- .container -->
 
-			</footer> -->
+			<!-- </footer> -->
 		</div> 
 		<!-- Default snippet for navigation -->
 		
-
+		<script src="{{ asset('app/js/jquery-1.11.1.min.js') }}" defer></script>
+		<script src="{{ asset('app/js/plugins_extern.js') }}" defer></script>
+		<script src="{{ asset('app/js/app_extern.js') }}" defer></script>
 	</body>
 @endsection
