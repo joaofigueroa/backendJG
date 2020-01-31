@@ -18,7 +18,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
  
 // Route::get('movies', function() {
 //     // If the Content-Type and Accept headers are set to 'application/json', 
@@ -30,12 +29,18 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return Movies::find($id);
 // });
 
-
+//Movie Routes
 Route::get('movies', 'MovieController@index');
 Route::get('movies/{movie}', 'MovieController@show');
 Route::get('search','MovieController@searchByName');
 Route::post('movies', 'MovieController@store');
 Route::put('movies/{id}', 'MovieController@update');
 Route::delete('movies/{id}', 'MovieController@delete');
+
+//Users Routes
+Route::post('user-sign-up', 'UserController@store');
+Route::get('verify','UserController@verifyEmail');
+Route::get('favorites','UserController@favorites');
+
 
 

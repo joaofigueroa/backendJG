@@ -19,4 +19,9 @@ class Movies extends Model
     {
         return $query->where($column, 'like', '%'.$value.'%');
     }
+
+    public function users()
+    {
+        return $this->belongsToMany('App\User','favorites','user_id', 'movie_id');
+    }
 }

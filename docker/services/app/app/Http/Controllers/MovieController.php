@@ -13,12 +13,7 @@ class MovieController extends Controller
     {
         return Movies::all();
     }
- 
-    // public function show($id)
-    // {
-    //     return Movies::find($id);
-    // }
-
+    
     public function show(Movies $movie)
     {
         return $movie;
@@ -27,7 +22,7 @@ class MovieController extends Controller
     public function searchByName(Request $request)
     {
         return Movies::whereLike('title', $request->param)->get();
-        //return Movies::all();
+        
     }
 
 
