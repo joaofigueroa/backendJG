@@ -22,6 +22,6 @@ class Movies extends Model
 
     public function users()
     {
-        return $this->belongsToMany('App\User','favorites','user_id', 'movie_id');
+        return $this->belongsToMany('App\User','favorites','movie_id', 'user_id');
     }
 }

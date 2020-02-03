@@ -41,6 +41,8 @@ Route::delete('movies/{id}', 'MovieController@delete');
 Route::post('user-sign-up', 'UserController@store');
 Route::get('verify','UserController@verifyEmail');
 Route::get('favorites','UserController@favorites');
+Route::post('addFavorite', 'UserController@newFavorite');
+Route::post('removeFavorite', 'UserController@unFavorite');
 
 
 

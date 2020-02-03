@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 use App\User;
 
+use App\Movies;
+
 
 class UserController extends Controller
 {
@@ -99,4 +101,21 @@ class UserController extends Controller
 
         return User::find($request->param)->movies()->get();
     }
+
+    public function newFavorite(Request $request){
+
+         $movie = Movies::find($request->movie_id);
+         $movie->users()->attach($request->user_id);
+        //return User::find($request->param)->movies()->get();
+    
+    }
+
+
+    public function unFavorite(Request $request){
+
+        $movie = Movies::find($request->movie_id);
+        $movie->users()->detach($request->user_id);
+       //return User::find($request->param)->movies()->get();
+   
+   }
 }
