@@ -31,17 +31,17 @@ class UserController extends Controller
         $Users = User::create($request->all());
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
+        //imgur Auth
+        //clientID = 3c5e090399fb9b5
+        //clientSecret = 3dec61cd4ffd5ff37f97c58e36bb8fcfc3518d50
         //
+        $photo = $request->user_avatar;
+        // $request->toFile($photo);
+        
         $user = User::insert($request->all());
-
+    
         return response()->json($user, 201);
     }
 
@@ -52,49 +52,25 @@ class UserController extends Controller
         
     }
     
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function update($id,Request $request)
     {
-        //
+        $user = User :: findOrFail($id);
+
+       $user->email = $request->email;
+       $user->password = $request->password;
+       $user->avatar_path = "avatar_path_up";
+
+        $user->save();
+        return $user;
+
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+   
     public function destroy($id)
     {
-        //
+        $user = User :: findOrFail($id);
+        $user->movies()->detach();
+        $user->delete();
     }
 
     public function favorites(Request $request){
@@ -110,12 +86,12 @@ class UserController extends Controller
     
     }
 
-
     public function unFavorite(Request $request){
 
         $movie = Movies::find($request->movie_id);
         $movie->users()->detach($request->user_id);
        //return User::find($request->param)->movies()->get();
-   
    }
+
+
 }

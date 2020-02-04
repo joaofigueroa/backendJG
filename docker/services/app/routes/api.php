@@ -18,16 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
- 
-// Route::get('movies', function() {
-//     // If the Content-Type and Accept headers are set to 'application/json', 
-//     // this will return a JSON structure. This will be cleaned up later.
-//     return Movies::all();
-// });
- 
-// Route::get('movies/{id}', function($id) {
-//     return Movies::find($id);
-// });
+
 
 //Movie Routes
 Route::get('movies', 'MovieController@index');
@@ -38,11 +29,13 @@ Route::put('movies/{id}', 'MovieController@update');
 Route::delete('movies/{id}', 'MovieController@delete');
 
 //Users Routes
-Route::post('user-sign-up', 'UserController@store');
 Route::get('verify','UserController@verifyEmail');
 Route::get('favorites','UserController@favorites');
 Route::post('addFavorite', 'UserController@newFavorite');
 Route::post('removeFavorite', 'UserController@unFavorite');
+Route::post('user-sign-up', 'UserController@store');
+Route::put('alterUser/{id}', 'UserController@update');
+Route::delete('deleteUser/{id}', 'UserController@destroy');
 
 
 
