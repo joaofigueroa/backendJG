@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\User;
+use GuzzleHttp\Exception\GuzzleException;
+use GuzzleHttp\Client;
 
+use App\User;
 use App\Movies;
 
 
@@ -33,17 +35,18 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
-        //imgur Auth
-        //clientID = 3c5e090399fb9b5
-        //clientSecret = 3dec61cd4ffd5ff37f97c58e36bb8fcfc3518d50
-        //
-        $photo = $request->user_avatar;
-        // $request->toFile($photo);
-        
         $user = User::insert($request->all());
     
         return response()->json($user, 201);
+        
     }
+
+    public function findUser($id){
+
+        return  User ::where('id',$id)->get();
+
+    }
+
 
 
     public function verifyEmail(Request $request)

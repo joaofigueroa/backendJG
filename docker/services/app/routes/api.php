@@ -30,10 +30,11 @@ Route::delete('movies/{id}', 'MovieController@delete');
 
 //Users Routes
 Route::get('verify','UserController@verifyEmail');
+Route::get('findUser/{id}','UserController@findUser');
 Route::get('favorites','UserController@favorites');
 Route::post('addFavorite', 'UserController@newFavorite');
 Route::post('removeFavorite', 'UserController@unFavorite');
-Route::post('user-sign-up', 'UserController@store');
+Route::post('userSignUp', 'UserController@store');
 Route::put('alterUser/{id}', 'UserController@update');
 Route::delete('deleteUser/{id}', 'UserController@destroy');
 
