@@ -36,7 +36,6 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $user = User::insert($request->all());
-    
         return response()->json($user, 201);
         
     }
@@ -61,7 +60,7 @@ class UserController extends Controller
 
        $user->email = $request->email;
        $user->password = $request->password;
-       $user->avatar_path = "avatar_path_up";
+       $user->avatar_path = $request->user_avatar;
 
         $user->save();
         return $user;
@@ -85,8 +84,7 @@ class UserController extends Controller
 
          $movie = Movies::find($request->movie_id);
          $movie->users()->attach($request->user_id);
-        //return User::find($request->param)->movies()->get();
-    
+        //return User::find($request->param)->movies()->get();  
     }
 
     public function unFavorite(Request $request){
