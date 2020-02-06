@@ -15,15 +15,3 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
-
-
-// Replace prefix with app 'cause of docker app
-
-Route::group(['prefix' => 'app'], function () {
-
-    Auth::routes();
-
-});
-
-Route::get('home', 'HomeController@index')->name('home');
