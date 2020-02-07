@@ -38,5 +38,7 @@ Route::post('userSignUp', 'UserController@store');
 Route::put('alterUser/{id}', 'UserController@update');
 Route::delete('deleteUser/{id}', 'UserController@destroy');
 
+Route::post('uploadImage', 'UserController@UploadUserAvatar');
+
 
 

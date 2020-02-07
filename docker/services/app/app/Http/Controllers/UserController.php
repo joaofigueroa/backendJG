@@ -28,11 +28,8 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        $Users = User::create($request->all());
-    }
-
+    
+    //create new user
     public function store(Request $request)
     {
         $user = User::insert($request->all());
@@ -40,20 +37,52 @@ class UserController extends Controller
         
     }
 
+    
     public function findUser($id){
 
         return  User ::where('id',$id)->get();
 
     }
 
+    //function that uploads image to an external server an gets its URL as a response
+    public function UploadUserAvatar(Request $request){
+        
+        $client = new Client();
+
+        $response = $client->post('https://api.imgbb.com/1/upload?key=37a88e50a894156c615b2baffe7db973',[  
+          'headers' => [                
+                'content-type' => 'application/x-www-form-urlencoded',
+            ],            
+         'form_params' =>[
+             
+              'image'=> base64_encode(file_get_contents($request->file('image')->path())),
+              //'filename' => end(explode('/', $file))
+          ] 
+         ]);
+
+        //return $response;
+        $response_json = json_decode($response->getBody()->getContents());
+        $imageUrl= $response_json->data->url;
+
+        // foreach($response_json as $response_final){
+        //     $url = $response_final;
+        // }
+        
+        return response()->json($imageUrl, 200);
+
+    }
 
 
+
+    //function to verify if an email exists
     public function verifyEmail(Request $request)
     {
         return User::where('email', $request->param)->get();
         
     }
     
+
+    //update the user's infos 
     public function update($id,Request $request)
     {
         $user = User :: findOrFail($id);
@@ -67,7 +96,7 @@ class UserController extends Controller
 
     }
 
-   
+   //delete the user
     public function destroy($id)
     {
         $user = User :: findOrFail($id);
@@ -75,11 +104,13 @@ class UserController extends Controller
         $user->delete();
     }
 
+    //find all favorites from an user
     public function favorites(Request $request){
 
         return User::find($request->param)->movies()->get();
     }
 
+    //add new favorite to an user
     public function newFavorite(Request $request){
 
          $movie = Movies::find($request->movie_id);
@@ -87,6 +118,7 @@ class UserController extends Controller
         //return User::find($request->param)->movies()->get();  
     }
 
+    //remove a favorite
     public function unFavorite(Request $request){
 
         $movie = Movies::find($request->movie_id);
