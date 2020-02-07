@@ -46,6 +46,33 @@ class UserController extends Controller
 
     }
 
+    public function UploadUserAvatar(Request $request){
+        
+        $client = new Client();
+
+        $response = $client->post('https://api.imgbb.com/1/upload?key=37a88e50a894156c615b2baffe7db973',[  
+          'headers' => [                
+                'content-type' => 'application/x-www-form-urlencoded',
+            ],            
+         'form_params' =>[
+             
+              'image'=> base64_encode(file_get_contents($request->file('image')->path())),
+              //'filename' => end(explode('/', $file))
+          ] 
+         ]);
+
+        //return $response;
+        $response_json = json_decode($response->getBody()->getContents());
+        $imageUrl= $response_json->data->url;
+
+        // foreach($response_json as $response_final){
+        //     $url = $response_final;
+        // }
+        
+        return response()->json($imageUrl, 200);
+
+    }
+
 
 
     public function verifyEmail(Request $request)
