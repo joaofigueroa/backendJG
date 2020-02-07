@@ -8,7 +8,7 @@ use App\Movies;
 
 class MovieController extends Controller
 {
-    //
+    //returns all movies
     public function index()
     {
         return Movies::all();
@@ -19,13 +19,14 @@ class MovieController extends Controller
         return $movie;
     }
 
+    //finds movies by its name
     public function searchByName(Request $request)
     {
         return Movies::whereLike('title', $request->param)->get();
         
     }
 
-
+    //function not being used hehee
     public function store(Request $request)
     {
         $Movies = Movies::create($request->all());
@@ -34,7 +35,7 @@ class MovieController extends Controller
     }
 
     
-
+    //function not being used hehee
     public function delete(Movies $Movies)
     {
         $Movies->delete();
